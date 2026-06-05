@@ -8,223 +8,205 @@
     <meta name="keywords" content="Aske Bode, audio mastering, stereo mastering, stem mastering, music production">
     <meta name="author" content="Aske Bode">
     <title>Aske Bode - Mastering</title>
-    <style>
-        * {
-            transition: all 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: repeating-linear-gradient( 45deg, rgba(255, 255, 255, 0.1) 0, rgba(255, 255, 255, 0.1) 1px, transparent 1px, transparent 50px);
-            z-index: 1;
-        }
-        
-        body {
-            background-image: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
-            color: #002d44;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        a {
-            color: #bcdbdf;
-        }
-        
-        a:hover {
-            color: #bcdbdf;
-            text-decoration: none;
-        }
-        
-        h1 {
-            text-justify: distribute;
-            font-family: 'Montserrat Alternates', sans-serif;
-            text-transform: uppercase;
-            font-size: 80px;
-            animation: fadeIn 500ms ease-in-out;
-        }
-        
-        h2 {
-            text-transform: uppercase;
-            font-size: 40px;
-            animation: fadeIn 1s ease-in-out;
-        }
-        
-        @media screen and (max-width: 768px) {
-            h1 {
-                font-size: 40px;
-            }
-            h2 {
-                font-size: 20px;
-            }
-        }
-        
-        .button {
-            display: inline-block;
-            background-color: #002d44;
-            color: white;
-            margin: 10px 30px;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 100px;
-        }
-        
-        .button:hover {
-            background-color: transparent;
-            color: white;
-        }
-        
-        .pricing-list li,
-        .clients li {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.5s forwards;
-            animation-delay: calc(0.1s * var(--animation-order));
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: left;
-            padding: 50px;
-        }
-        
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .pricing-list li {
-            margin: 10px 0;
-        }
-        
-        .clients li {
-            display: block;
-            float: left;
-            margin: 10px 0 10px 10px;
-        }
-        
-        hr {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(0, 45, 68, 0), rgba(0, 45, 68, 0.75), rgba(0, 45, 68, 0));
-            /* updated color */
-            margin: 20px 0;
-        }
-    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat+Alternates:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0c0c0c;
+            --text: #e8e2d4;
+            --muted: #5a5a5a;
+            --accent: #b8a882;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Cormorant', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* subtle film grain */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 860px;
+            padding: 14vh 56px 16vh;
+            animation: fadeUp 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* ── Name ── */
+        h1 {
+            font-weight: 300;
+            font-size: clamp(4.5rem, 11vw, 9.5rem);
+            letter-spacing: -0.025em;
+            line-height: 0.88;
+            margin-bottom: 1.6rem;
+        }
+
+        /* ── Services line ── */
+        .services {
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-weight: 300;
+            font-size: clamp(0.55rem, 1vw, 0.7rem);
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ── Thin rule ── */
+        .rule {
+            width: 32px;
+            height: 1px;
+            background: var(--muted);
+            margin: 5vh 0;
+            opacity: 0.4;
+        }
+
+        /* ── Section labels ── */
+        .label {
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-weight: 300;
+            font-size: 0.6rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1.4rem;
+            display: block;
+        }
+
+        /* ── Pricing ── */
+        .pricing {
+            list-style: none;
+            margin-bottom: 2.2rem;
+        }
+
+        .pricing li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .pricing li:nth-child(1) { animation-delay: 0.5s; }
+        .pricing li:nth-child(2) { animation-delay: 0.7s; }
+
+        .pricing .price {
+            font-style: italic;
+            color: var(--accent);
+            font-size: 0.9em;
+        }
+
+        /* ── Contact note ── */
+        .note {
+            font-style: italic;
+            font-size: clamp(0.85rem, 1.4vw, 1rem);
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .note a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(232,226,212,0.25);
+            font-style: normal;
+            letter-spacing: 0.03em;
+            transition: color 0.25s, border-color 0.25s;
+        }
+
+        .note a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ── Clients ── */
+        .clients-section {
+            margin-top: 7vh;
+        }
+
+        .clients-text {
+            font-weight: 300;
+            font-size: clamp(0.8rem, 1.35vw, 1rem);
+            line-height: 2.1;
+            color: rgba(232, 226, 212, 0.38);
+            letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                padding: 11vh 28px 12vh;
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <div>
-            <h1>Aske Bode</h1>
-            <h2>FOH \ MASTERING \ MIX</h2>
-            <h3>Mastering priser pr. 1/1/2024:</h2>
-                <ul class="pricing-list">
-                    <li style="--animation-order:1;">Stereo master - 625DKK</li>
-                    <li style="--animation-order:2;">Stem master - 1000DKK</li>
-                </ul>
-                <p style="font-size: small; margin-bottom: 5em;">Priser er inkl. moms. For andre opgaver og mere information kontakt <a class="button" href="mail@askebode.com">mail@askebode.com</a></p>
-                <hr>
+
+        <h1>Aske Bode</h1>
+        <p class="services">FOH &nbsp;&middot;&nbsp; Mastering &nbsp;&middot;&nbsp; Mix</p>
+
+        <div class="rule"></div>
+
+        <span class="label">Mastering priser pr. 1/1/2024</span>
+        <ul class="pricing">
+            <li>
+                <span>Stereo master</span>
+                <span class="price">625 DKK</span>
+            </li>
+            <li>
+                <span>Stem master</span>
+                <span class="price">1000 DKK</span>
+            </li>
+        </ul>
+        <p class="note">Priser er inkl. moms. For andre opgaver og mere information kontakt&nbsp;<a href="mailto:mail@askebode.com">mail@askebode.com</a></p>
+
+        <div class="clients-section">
+            <span class="label">Referencer</span>
+            <p class="clients-text">
+                ANNIKA AAKJÆR &middot; GULDIMUND &middot; HYMNS FROM NINEVEH &middot; USSEL &middot; KATINKA &middot;
+                PERNILLE ROSENDAHL &middot; ASTRID ENGBERG &middot; UNG-SKAB &middot; MATONGO &middot; NANA JACOBI &middot;
+                KILL J &middot; SHY SHY SHY &middot; BISSE &middot; OH LAND &middot; SLØREDE LINIER &middot;
+                ASTRID CORDES &middot; PALACE WINTER &middot; MASASOLO &middot; FAVOR &middot; THE ECLECTIC MONIKER &middot;
+                TÅRN &middot; UDEN ORD &middot; PENNY POLICE &middot; THE KUTIMANGOES &middot; LHUMA &middot;
+                WHERE DID NORA GO &middot; KOM VI LØBER &middot; BLITZKRIG &middot; NAUSIA &middot; PETER AMORAS &middot;
+                ELOU ELAN &middot; JOSA BARCK &middot; SVIN &middot; KITES &amp; KOMETS &middot; TOM BJERG &middot;
+                THE OCEANS &middot; PHOSPHOR KID &middot; AUGUSTINE &middot; KAIZER &middot; MARTHA ELIZABETH &middot;
+                STRIVING VINES &middot; KASPER STAUB &middot; VESTBO TRIO &middot; JETSI KAIN &middot; MECHANICAL BIRD &middot;
+                DINNER BOI &middot; KIRSTINE STUBBE TEGLBJÆRG &middot; HEIMATT &middot; GOLDIE CHORUS &middot; DISA &middot;
+                NEON PRIEST &middot; GIRLS IN AIRPORTS &middot; NORTHERN ASSEMBLY &middot; QUICK QUICK OBEY &middot;
+                SOFIA HEDIA &middot; BATTLEKAT &middot; og mange flere
+            </p>
         </div>
 
-        <div style="max-width: 1200px;">
-            <ul class="clients">
-                <li>Referencer:</li>
-                <li>ANNIKA AAKJÆR</li>
-                <li>GULDIMUND</li>
-                <li>HYMNS FROM NINEVEH</li>
-                <li>USSEL</li>
-                <li>KATINKA</li>
-                <li>PERNILLE ROSENDAHL</li>
-                <li>ASTRID ENGBERG</li>
-                <li>UNG-SKAB</li>
-                <li>MATONGO</li>
-                <li>NANA JACOBI</li>
-                <li>KILL J</li>
-                <li>SHY SHY SHY</li>
-                <li>BISSE</li>
-                <li>OH LAND</li>
-                <li>SLØREDE LINIER</li>
-                <li>ASTRID CORDES</li>
-                <li>PALACE WINTER</li>
-                <li>MASASOLO</li>
-                <li>FAVOR</li>
-                <li>THE ECLECTIC MONIKER</li>
-                <li>TÅRN</li>
-                <li>UDEN ORD</li>
-                <li>PENNY POLICE</li>
-                <li>THE KUTIMANGOES</li>
-                <li>LHUMA</li>
-                <li>WHERE DID NORA GO</li>
-                <li>KOM VI LØBER</li>
-                <li>BLITZKRIG</li>
-                <li>NAUSIA</li>
-                <li>PETER AMORAS</li>
-                <li>ELOU ELAN</li>
-                <li>JOSA BARCK</li>
-                <li>SVIN</li>
-                <li>KITES &amp; KOMETS</li>
-                <li>TOM BJERG</li>
-                <li>THE OCEANS</li>
-                <li>PHOSPHOR KID</li>
-                <li>AUGUSTINE</li>
-                <li>KAIZER</li>
-                <li>MARTHA ELIZABETH</li>
-                <li>STRIVING VINES</li>
-                <li>KASPER STAUB</li>
-                <li>VESTBO TRIO</li>
-                <li>JETSI KAIN</li>
-                <li>MECHANICAL BIRD</li>
-                <li>DINNER BOI</li>
-                <li>KIRSTINE STUBBE TEGLBJÆRG</li>
-                <li>HEIMATT</li>
-                <li>GOLDIE CHORUS</li>
-                <li>DISA</li>
-                <li>NEON PRIEST</li>
-                <li>GIRLS IN AIRPORTS</li>
-                <li>NORTHERN ASSEMBLY</li>
-                <li>STRIVING VINES</li>
-                <li>QUICK QUICK OBEY</li>
-                <li>SOFIA HEDIA</li>
-                <li>BATTLEKAT</li>
-                <li>og mange flere...</li>
-            </ul>
-        </div>
-
+    </div>
 </body>
 
 </html>
